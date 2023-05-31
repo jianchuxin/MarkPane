@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <div>InputArea</div>
+  <div class="input">
+    <div>InputArea</div>
+  </div>
 </template>
 
 <style scoped></style>
