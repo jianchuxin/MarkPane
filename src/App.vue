@@ -1,11 +1,15 @@
 <script setup>
 import AsideMenu from "@/components/AsideMenu.vue";
 import MainArea from "./components/MainArea.vue";
+import { useStore } from "./stores";
+const store = useStore();
 </script>
 
 <template>
-  <AsideMenu />
-  <MainArea />
+  <div class="app" :class="{ 'show-menu': store.showMenu }">
+    <AsideMenu />
+    <MainArea />
+  </div>
 </template>
 
 <style lang="less">
@@ -20,7 +24,7 @@ FONT SIZE SYSTEM (px) 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62
 
 html,
 body {
-  font-size: 67.5%;
+  font-size: 62.5%;
   font-family: Microsoft Yahei, "PingHei", "Helvetica Neue", "Helvetica",
     "STHeitiSC-Light", "Arial", sans-serif;
   line-height: 1;
@@ -28,10 +32,20 @@ body {
   height: 100%;
   background-color: #e0e0e0;
 }
-
 #app {
-  display: flex;
   height: 100%;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  left: -22rem;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+  &.show-menu {
+    left: 0;
+  }
 }
 
 *::-webkit-scrollbar {

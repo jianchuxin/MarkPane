@@ -1,7 +1,4 @@
-<script setup>
-import { useStore } from "@/stores";
-const store = useStore();
-</script>
+<script setup></script>
 
 <template>
   <div class="aside-menu">
@@ -54,6 +51,7 @@ const store = useStore();
 <style scoped lang="less">
 .aside-menu {
   position: relative;
+  // float: left;
   height: 100%;
   width: 22rem;
   background-color: #f5f5f5;
