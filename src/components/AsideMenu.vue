@@ -1,4 +1,23 @@
-<script setup></script>
+<script setup>
+import { useStore } from "@/stores/index";
+const store = useStore();
+
+const selectArticle = (id) => {
+  console.log("选择文章id:", id);
+  store.selectArticle(id);
+};
+
+const deleteArticle = (id) => {
+  console.log("删除文章id:", id);
+  store.deleteArticle(id);
+};
+
+const addNewArticle = () => {
+  console.log("添加一篇新文章");
+  console.log("currentId", store.currentId);
+  store.addNewArticle();
+};
+</script>
 
 <template>
   <div class="aside-menu">
@@ -9,24 +28,28 @@
 
     <!-- file list -->
     <ul class="files">
-      <li>
-        <span>undefined1111111111111</span>
-        <button class="delete-btn"><i class="fa fa-solid fa-xmark"></i></button>
-      </li>
-      <li>
-        <span>undefined</span>
-        <button class="delete-btn"><i class="fa fa-solid fa-xmark"></i></button>
-      </li>
-      <li class="current">
-        <span>undefined</span>
-        <button class="delete-btn"><i class="fa fa-solid fa-xmark"></i></button>
+      <!-- 文章的标题为内容的第一行 -->
+      <li
+        v-for="article in store.articleList"
+        :key="article.id"
+        :class="{ current: article.id === store.currentId }"
+        @click="selectArticle(article.id)"
+      >
+        <span>{{ article.content.split("\n")[0] }}</span>
+        <button
+          v-if="store.articleList.length > 1"
+          class="delete-btn"
+          @click="deleteArticle(article.id)"
+        >
+          <i class="fa fa-solid fa-xmark"></i>
+        </button>
       </li>
     </ul>
 
     <!-- actions -->
     <ul class="actions">
       <li>
-        <button class="add-one-btn">
+        <button class="add-one-btn" @click="addNewArticle">
           <i class="fa fa-plus"></i>
         </button>
       </li>
@@ -51,9 +74,8 @@
 <style scoped lang="less">
 .aside-menu {
   position: relative;
-  // float: left;
   height: 100%;
-  width: 22rem;
+  min-width: 22rem; // 点睛之笔
   background-color: #f5f5f5;
   box-shadow: 4px 1px 6px 0px rgba(0, 0, 0, 0.2);
 
@@ -70,6 +92,7 @@
     margin-bottom: 1.3rem;
     li {
       position: relative;
+      cursor: default;
       span {
         display: block;
         height: 100%;
