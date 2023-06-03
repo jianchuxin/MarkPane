@@ -1,5 +1,22 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
+
+// marked.setOptions({
+//   highlight(code) {
+//     return hljs.highlightAuto(code).value;
+//   },
+// });
+
+marked.use(
+  markedHighlight({
+    highlight(code) {
+      return hljs.highlight(code).value;
+    },
+  })
+);
 
 export const useStore = defineStore("store", () => {
   const showMenu = ref(true);
@@ -59,6 +76,18 @@ export const useStore = defineStore("store", () => {
     article.content = text;
   };
 
+  //获取当前文章内容文本
+  const rawContent = computed(() => {
+    const currentArticle = articleList.value.find(
+      (item) => item.id === currentId.value
+    );
+    return currentArticle.content;
+  });
+
+  // 渲染文本，.md --》 html
+  const previewContent = computed(() => {
+    return marked.parse(rawContent.value);
+  });
   return {
     showMenu,
     currentId,
@@ -67,5 +96,7 @@ export const useStore = defineStore("store", () => {
     addNewArticle,
     deleteArticle,
     contentChange,
+    rawContent,
+    previewContent,
   };
 });

@@ -5,10 +5,7 @@ const store = useStore();
 
 // 获取文件内容并显示
 const rawContent = computed(() => {
-  const currentArticle = store.articleList.find(
-    (item) => item.id === store.currentId
-  );
-  return currentArticle.content;
+  return store.rawContent;
 });
 
 // 用户输入文本，改变文件内容

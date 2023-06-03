@@ -1,14 +1,22 @@
-<script setup></script>
+<script setup>
+import { useStore } from "@/stores";
+import { computed } from "vue";
+const store = useStore();
+const previewContent = computed(() => {
+  return store.previewContent;
+});
+</script>
 
 <template>
   <div class="preview">
-    <textarea ref="previewer"></textarea>
+    <div ref="previewer" v-html="previewContent"></div>
   </div>
 </template>
 
-<style scoped lang="less">
+<style lang="less">
+@import url("@/assets/themes/vue/vue.less");
 .preview {
-  textarea {
+  div {
     width: 100%;
     height: 100%;
     padding: 1.5rem;
@@ -21,6 +29,7 @@
     color: #616161;
     box-shadow: 4px 5px 3px #aaa;
     transition: all ease 0.3s;
+    word-wrap: break-word;
   }
 }
 </style>

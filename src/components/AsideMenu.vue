@@ -33,9 +33,10 @@ const addNewArticle = () => {
         v-for="article in store.articleList"
         :key="article.id"
         :class="{ current: article.id === store.currentId }"
-        @click="selectArticle(article.id)"
       >
-        <span>{{ article.content.split("\n")[0] }}</span>
+        <span @click="selectArticle(article.id)">{{
+          article.content.split("\n")[0]
+        }}</span>
         <button
           v-if="store.articleList.length > 1"
           class="delete-btn"
@@ -93,6 +94,7 @@ const addNewArticle = () => {
     li {
       position: relative;
       cursor: default;
+      color: #9e9e9e;
       span {
         display: block;
         height: 100%;
@@ -112,6 +114,7 @@ const addNewArticle = () => {
       }
 
       &.current {
+        color: #616161;
         border-left: 6px solid #009688;
       }
 
