@@ -240,8 +240,42 @@
     margin-bottom: 0;
   }
 
+  // pre {
+  //   padding: 1rem;
+  //   font-size: 85%;
+  //   line-height: 1.45;
+  //   background-color: #f7f7f7;
+  //   border: 0;
+  //   border-radius: 3px;
+  //   color: #777777;
+  //   margin-top: 0 !important;
+  // }
+  // code,
+  tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+  }
+
   tt {
     margin: 0 2px;
+  }
+
+  /* heighlight. */
+  mark {
+    background-color: #ebffeb;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+  }
+
+  del {
+    padding: 1px 2px;
   }
 
   @media print {
@@ -257,5 +291,35 @@
     pre {
       word-wrap: break-word;
     }
+  }
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  font-family: monospace;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+pre {
+  display: block;
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  font-family: inherit;
+  line-height: 1.5;
+  color: #abb2bf;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #282c34;
+  border: none;
+  code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
   }
 }

@@ -11,9 +11,17 @@ import hljs from "highlight.js";
 // });
 
 marked.use(
+  {
+    mangle: false,
+  },
+  {
+    headerIds: false,
+  },
   markedHighlight({
-    highlight(code) {
-      return hljs.highlight(code).value;
+    langPrefix: "hljs language-",
+    highlight(code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : "plaintext";
+      return hljs.highlight(code, { language }).value;
     },
   })
 );
