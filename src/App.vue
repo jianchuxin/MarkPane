@@ -42,7 +42,7 @@ body {
   left: -22rem;
   width: 100%;
   height: 100%;
-  transition: all 0.3s;
+  transition: all ease 0.5s;
   &.show-menu {
     left: 0;
   }

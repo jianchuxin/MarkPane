@@ -13,31 +13,38 @@ const contentChange = (e) => {
   console.log("用户正在输入..");
   store.contentChange(e.target.value);
 };
+
+//同步滚动
+const syncScroll = (e) => {
+  store.previewer.scrollTop = e.target.scrollTop;
+};
 </script>
 
 <template>
-  <div class="input">
-    <textarea autofocus :value="rawContent" @input="contentChange"></textarea>
-  </div>
+  <textarea
+    class="input"
+    ref="inputer"
+    autofocus
+    :value="rawContent"
+    @input="contentChange"
+    @scroll="syncScroll"
+  ></textarea>
 </template>
 
 <style scoped lang="less">
-.input {
+textarea {
+  display: block;
+  width: 100%;
   height: 100%;
-  textarea {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 1.5rem;
-    resize: none;
-    border: none;
-    background-color: #f5f5f5;
-    outline: none;
-    font-family: inherit;
-    font-size: 1.8rem;
-    color: #616161;
-    box-shadow: 4px 5px 3px #aaa;
-    transition: all ease 0.3s;
-  }
+  padding: 1.5rem;
+  resize: none;
+  border: none;
+  background-color: #f5f5f5;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.8rem;
+  color: #616161;
+  box-shadow: 4px 5px 3px #aaa;
+  transition: all ease 0.3s;
 }
 </style>

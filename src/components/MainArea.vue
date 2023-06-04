@@ -27,7 +27,7 @@ const store = useStore();
     }
   }
   .section {
-    transition: all 0.3s;
+    transition: all 0.5s;
     width: 100%;
     height: calc(100% - 4.5rem); //点睛之笔
     display: grid;

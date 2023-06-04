@@ -96,6 +96,10 @@ export const useStore = defineStore("store", () => {
   const previewContent = computed(() => {
     return marked.parse(rawContent.value);
   });
+
+  //同步滚动
+  const previewer = ref(null);
+
   return {
     showMenu,
     currentId,
@@ -106,5 +110,6 @@ export const useStore = defineStore("store", () => {
     contentChange,
     rawContent,
     previewContent,
+    previewer,
   };
 });
