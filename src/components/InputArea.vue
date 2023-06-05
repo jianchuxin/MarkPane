@@ -1,8 +1,12 @@
 <script setup>
 import { useStore } from "@/stores";
-import { computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 const store = useStore();
 
+const inputer = ref(null);
+onMounted(() => {
+  store.inputer = inputer.value;
+});
 // 获取文件内容并显示
 const rawContent = computed(() => {
   return store.rawContent;
