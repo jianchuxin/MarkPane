@@ -23,7 +23,7 @@ const addNewArticle = () => {
   <div class="aside-menu">
     <!-- logo -->
     <div class="logo">
-      <img src="@/assets/images/logo.png" alt="logo" class="logo" />
+      <img src="@/assets/images/logo11.png" alt="logo" class="logo" />
     </div>
 
     <!-- file list -->
@@ -83,8 +83,8 @@ const addNewArticle = () => {
   .logo {
     text-align: center;
     img {
-      padding: 20px 0;
-      width: 125px;
+      padding: 1.5rem 0;
+      width: 15rem;
     }
   }
 

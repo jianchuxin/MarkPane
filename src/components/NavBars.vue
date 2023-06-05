@@ -126,62 +126,62 @@ const insert = (content) => {
     <ul>
       <li>
         <button @click="toggleMenu">
-          <i class="fa iconfont icon-zhedie"></i>
+          <i class="fa iconfont icon-hanbaocaidan"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.bold)">
-          <i class="fa iconfont icon-bold"></i>
+          <i class="fa iconfont icon-bold1"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.italic)">
-          <i class="fa iconfont icon-italic"></i>
+          <i class="fa iconfont icon-italic1"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.link)">
-          <i class="fa iconfont icon-link"></i>
+          <i class="fa iconfont icon-link1"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.quote)">
-          <i class="fa iconfont icon-quotation_marks"></i>
+          <i class="fa iconfont icon-quote"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.code)">
-          <i class="fa iconfont icon-insert_tag_field"></i>
+          <i class="fa iconfont icon-code"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.codeBlock)">
-          <i class="fa iconfont icon-brackets-curly"></i>
+          <i class="fa iconfont icon-brackets-curly1"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.img)">
-          <i class="fa iconfont icon-fuwenbenbianjiqi_tupian"></i>
+          <i class="fa iconfont icon-image"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.uList)">
-          <i class="fa iconfont icon-liebiao"></i>
+          <i class="fa iconfont icon-unorderedList"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.header)">
-          <i class="fa iconfont icon-header"></i>
+          <i class="fa iconfont icon-title"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.line)">
-          <i class="fa iconfont icon-fuwenbenbianjiqi_xiahuaxian"></i>
+          <i class="fa iconfont icon-hr"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.table)">
-          <i class="fa iconfont icon-biaoge"></i>
+          <i class="fa iconfont icon-table"></i>
         </button>
       </li>
       <li>
@@ -193,7 +193,7 @@ const insert = (content) => {
         <button
           @click="openLink('https://github.com/jianchuxin/MarkPane/issues')"
         >
-          <i class="fa iconfont icon-wenhao"></i>
+          <i class="fa iconfont icon-question"></i>
         </button>
       </li>
     </ul>
@@ -235,7 +235,7 @@ const insert = (content) => {
 
         .fa {
           color: #fff;
-          font-size: 1.8rem;
+          font-size: 2.4rem;
         }
       }
     }
