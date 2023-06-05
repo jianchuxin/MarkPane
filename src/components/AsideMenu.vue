@@ -42,7 +42,7 @@ const addNewArticle = () => {
           class="delete-btn"
           @click="deleteArticle(article.id)"
         >
-          <i class="fa fa-solid fa-xmark"></i>
+          <i class="fa iconfont icon-shanchu"></i>
         </button>
       </li>
     </ul>
@@ -51,18 +51,18 @@ const addNewArticle = () => {
     <ul class="actions">
       <li>
         <button class="add-one-btn" @click="addNewArticle">
-          <i class="fa fa-plus"></i>
+          <i class="fa iconfont icon-add-bold"></i>
         </button>
       </li>
       <li>
         <a href="">
-          <i class="fa fa-brands fa-html5"></i>
+          <i class="fa iconfont icon-HTML-fill"></i>
           <span>Save as .html</span>
         </a>
       </li>
       <li>
         <a href="">
-          <i class="fa fa-download"></i>
+          <i class="fa iconfont icon-xiazai"></i>
           <span>Save as .md</span>
         </a>
       </li>
@@ -127,6 +127,9 @@ const addNewArticle = () => {
         border: none;
         padding: 6px;
         height: 100%;
+        .fa {
+          font-size: 1.2rem;
+        }
         &:hover {
           background-color: #ef5350;
           .fa {

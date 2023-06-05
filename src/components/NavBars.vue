@@ -7,7 +7,7 @@ const toggleMenu = () => {
 
 const options = {
   bold: "**bold**",
-  italic: "Italic",
+  italic: "*Italic*",
   link: "[Link](http://example.com/)",
   quote: "\n>",
   code: "`code`",
@@ -45,6 +45,8 @@ const insert = (content) => {
       case options.bold:
         setContent(content, endPosition, 2, 2);
         break;
+      case options.italic:
+        setContent(content, endPosition, 1, 1);
     }
   }
 };
@@ -59,66 +61,70 @@ const test = () => {
   <nav class="nav-bars">
     <ul>
       <li>
-        <button @click="toggleMenu"><i class="fa fa-bars"></i></button>
+        <button @click="toggleMenu">
+          <i class="fa iconfont icon-zhedie"></i>
+        </button>
       </li>
       <li>
         <button @click="insert(options.bold)">
-          <i class="fa fa-bold"></i>
+          <i class="fa iconfont icon-bold"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.italic)">
-          <i class="fa fa-italic"></i>
+          <i class="fa iconfont icon-italic"></i>
         </button>
       </li>
       <li>
         <button @click="test">
-          <i class="fa fa-link"></i>
+          <i class="fa iconfont icon-link"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.quote)">
-          <i class="fa fa-quote-left"></i>
+          <i class="fa iconfont icon-quotation_marks"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.code)">
-          <i class="fa fa-code"></i>
+          <i class="fa iconfont icon-insert_tag_field"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.codeBlock)">
-          <i class="fa fa-regular fa-brackets-curly"></i>
+          <i class="fa iconfont icon-brackets-curly"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.img)">
-          <i class="fa fa-regular fa-image"></i>
+          <i class="fa iconfont icon-fuwenbenbianjiqi_tupian"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.uList)">
-          <i class="fa fa-list-ul"></i>
+          <i class="fa iconfont icon-liebiao"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.header)">
-          <i class="fa fa-header"></i>
+          <i class="fa iconfont icon-header"></i>
         </button>
       </li>
       <li>
         <button @click="insert(options.line)">
-          <i class="fa fa-underline"></i>
+          <i class="fa iconfont icon-fuwenbenbianjiqi_xiahuaxian"></i>
         </button>
       </li>
       <li>
-        <button @click="insert(options.table)"><i class="fa fa-th"></i></button>
+        <button @click="insert(options.table)">
+          <i class="fa iconfont icon-biaoge"></i>
+        </button>
       </li>
       <li>
-        <button><i class="fa fa-brands fa-github"></i></button>
+        <button><i class="fa iconfont icon-github"></i></button>
       </li>
       <li>
-        <button><i class="fa fa-question"></i></button>
+        <button><i class="fa iconfont icon-wenhao"></i></button>
       </li>
     </ul>
   </nav>
