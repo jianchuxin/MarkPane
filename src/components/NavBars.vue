@@ -1,17 +1,25 @@
 <script setup>
 import { useStore } from "@/stores";
 const store = useStore();
+
+// 控制菜单折叠
 const toggleMenu = () => {
   store.showMenu = !store.showMenu;
 };
 
+// github图标和提问跳转链接
+const openLink = (url) => {
+  window.open(url, "_blank");
+};
+
+// 工具栏编辑功能选项
 const options = {
   bold: "**bold**",
   italic: "*Italic*",
   link: "[Link](http://example.com/)",
   quote: "\n>",
   code: "`code`",
-  codeBlock: "\n```js\n```\n}",
+  codeBlock: "\n```js\n```\n",
   img: "![Img](http://example.com/)",
   uList: "\n-",
   header: "\n#",
@@ -20,11 +28,11 @@ const options = {
     "\n\n| title | title | title |\n| --- | --- | --- |\n| item | item | item |",
 };
 
+//快捷插入内容，里面不包含页面内容
 const setContent = (content, endPosition, start, end) => {
   const oldContent = store.inputer.value;
   const newContent =
     oldContent.slice(0, endPosition) + content + oldContent.slice(endPosition);
-  console.log(endPosition + start, endPosition + content.length - end);
   store.inputer.focus();
   setTimeout(function () {
     store.inputer.setSelectionRange(
@@ -32,29 +40,85 @@ const setContent = (content, endPosition, start, end) => {
       endPosition + content.length - end
     );
   }, 10);
-
   store.contentChange(newContent);
 };
 
+//插入内容，并包裹页面内容
+const updateContent = (startPosition, endPosition, content, left, right) => {
+  const oldContent = store.inputer.value;
+  const leftPart = content.slice(0, left);
+  const middlePart = oldContent.slice(startPosition, endPosition);
+  const rightPart = content.slice(-right);
+  console.log(leftPart, ",", middlePart, ",", rightPart);
+  console.log(content);
+  const newContent =
+    oldContent.slice(0, startPosition) +
+    leftPart +
+    middlePart +
+    rightPart +
+    oldContent.slice(endPosition);
+  store.inputer.focus();
+  setTimeout(function () {
+    store.inputer.setSelectionRange(startPosition + left, endPosition + left);
+  }, 10);
+  store.contentChange(newContent);
+};
+
+// 工具栏功能函数
 const insert = (content) => {
   console.log(content);
   const startPosition = store.inputer.selectionStart;
   const endPosition = store.inputer.selectionEnd;
   if (startPosition === endPosition) {
     switch (content) {
-      case options.bold:
+      case options.bold: //**bold**
         setContent(content, endPosition, 2, 2);
         break;
       case options.italic:
         setContent(content, endPosition, 1, 1);
+        break;
+      case options.link:
+        setContent(content, endPosition, 7, 1);
+        break;
+      case options.code:
+        setContent(content, endPosition, 1, 1);
+        break;
+      case options.codeBlock:
+        setContent(content, endPosition, 4, 5);
+        break;
+      case options.img:
+        setContent(content, endPosition, 7, 1);
+        break;
+      case options.table:
+        setContent(content, endPosition, 4, 61);
+        break;
+      default:
+        setContent(content, endPosition, content.length, 0);
+    }
+  } else {
+    switch (content) {
+      case options.bold:
+        updateContent(startPosition, endPosition, content, 2, 2);
+        break;
+      case options.italic:
+        updateContent(startPosition, endPosition, content, 1, 1);
+        break;
+      case options.code:
+        updateContent(startPosition, endPosition, content, 1, 1);
+        break;
+      case options.link:
+        updateContent(startPosition, endPosition, content, 1, 22);
+        break;
+      case options.img:
+        updateContent(startPosition, endPosition, content, 2, 22);
+        break;
+      default:
+        break;
     }
   }
 };
 
-const test = () => {
-  store.inputer.focus();
-  store.inputer.setSelectionRange(0, 4);
-};
+//
 </script>
 
 <template>
@@ -76,7 +140,7 @@ const test = () => {
         </button>
       </li>
       <li>
-        <button @click="test">
+        <button @click="insert(options.link)">
           <i class="fa iconfont icon-link"></i>
         </button>
       </li>
@@ -121,10 +185,16 @@ const test = () => {
         </button>
       </li>
       <li>
-        <button><i class="fa iconfont icon-github"></i></button>
+        <button @click="openLink('https://github.com/jianchuxin/MarkPane')">
+          <i class="fa iconfont icon-github"></i>
+        </button>
       </li>
       <li>
-        <button><i class="fa iconfont icon-wenhao"></i></button>
+        <button
+          @click="openLink('https://github.com/jianchuxin/MarkPane/issues')"
+        >
+          <i class="fa iconfont icon-wenhao"></i>
+        </button>
       </li>
     </ul>
   </nav>
