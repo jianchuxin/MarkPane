@@ -36,6 +36,10 @@ body {
   height: 100%;
 }
 
+.el-message {
+  font-size: 1.6rem;
+}
+
 .app {
   position: relative;
   display: flex;

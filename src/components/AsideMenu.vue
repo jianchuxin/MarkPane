@@ -1,5 +1,6 @@
 <script setup>
 import { useStore } from "@/stores/index";
+import { computed, ref } from "vue";
 const store = useStore();
 
 const selectArticle = (id) => {
@@ -17,13 +18,39 @@ const addNewArticle = () => {
   console.log("currentId", store.currentId);
   store.addNewArticle();
 };
+
+// 文件下载 .html and .md
+
+const htmlDataUrl = ref("");
+const mdDataUrl = ref("");
+const titleHtml = computed(() => {
+  return store.rawContent.split("\n")[0] + ".html";
+});
+const titleMd = computed(() => {
+  return store.rawContent.split("\n")[0] + ".md";
+});
+const createUrl = (mode) => {
+  if (mode === "md") {
+    //下载.md文件
+    const val = store.rawContent;
+    const blobObj = new Blob([val]);
+    const objectURL = URL.createObjectURL(blobObj);
+    mdDataUrl.value = objectURL;
+  } else {
+    //下载.html文件
+    const val = store.previewContent;
+    const blobObj = new Blob([val]);
+    const objectURL = URL.createObjectURL(blobObj);
+    htmlDataUrl.value = objectURL;
+  }
+};
 </script>
 
 <template>
   <div class="aside-menu">
     <!-- logo -->
     <div class="logo">
-      <img src="@/assets/images/logo11.png" alt="logo" class="logo" />
+      <img src="@/assets/images/logo11.png" alt="logo" />
     </div>
 
     <!-- file list -->
@@ -55,13 +82,17 @@ const addNewArticle = () => {
         </button>
       </li>
       <li>
-        <a href="">
+        <a
+          :href="htmlDataUrl"
+          :download="titleHtml"
+          @mouseenter="createUrl('html')"
+        >
           <i class="fa iconfont icon-HTML-fill"></i>
           <span>Save as .html</span>
         </a>
       </li>
       <li>
-        <a href="">
+        <a :href="mdDataUrl" :download="titleMd" @mouseenter="createUrl('md')">
           <i class="fa iconfont icon-xiazai"></i>
           <span>Save as .md</span>
         </a>
@@ -82,6 +113,7 @@ const addNewArticle = () => {
 
   .logo {
     text-align: center;
+    border-bottom: 1px solid #e0e0e0;
     img {
       padding: 1.5rem 0;
       width: 15rem;

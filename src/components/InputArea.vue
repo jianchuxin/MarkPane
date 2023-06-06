@@ -1,6 +1,8 @@
 <script setup>
 import { useStore } from "@/stores";
 import { ref, computed, onMounted } from "vue";
+import "element-plus/es/components/message/style/css";
+import { ElMessage } from "element-plus";
 const store = useStore();
 
 const inputer = ref(null);
@@ -22,6 +24,35 @@ const contentChange = (e) => {
 const syncScroll = (e) => {
   store.previewer.scrollTop = e.target.scrollTop;
 };
+
+// 文件拖动
+const dragging = (e) => {
+  const fileData = e.dataTransfer.files;
+  console.log(e.dataTransfer.files);
+  if (fileData.length > 1) {
+    ElMessage({
+      message: "请一次拖入1个文件",
+      type: "warning",
+    });
+  } else if (fileData[0].name.slice(-3) !== ".md") {
+    console.log(1);
+    ElMessage({
+      message: "文件类型不匹配, 应为(*.md)",
+      type: "warning",
+    });
+  } else {
+    ElMessage({
+      message: "导入成功",
+      type: "success",
+    });
+    const fileReader = new FileReader();
+    fileReader.readAsText(fileData[0], "UTF-8");
+    fileReader.onloadend = (e) => {
+      const newContent = e.target.result;
+      store.contentChange(newContent);
+    };
+  }
+};
 </script>
 
 <template>
@@ -32,6 +63,7 @@ const syncScroll = (e) => {
     :value="rawContent"
     @input="contentChange"
     @scroll="syncScroll"
+    @drop.stop.prevent="dragging"
   ></textarea>
 </template>
 
