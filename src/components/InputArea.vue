@@ -9,6 +9,7 @@ const inputer = ref(null);
 onMounted(() => {
   store.inputer = inputer.value;
 });
+
 // 获取文件内容并显示
 const rawContent = computed(() => {
   return store.rawContent;
@@ -16,7 +17,7 @@ const rawContent = computed(() => {
 
 // 用户输入文本，改变文件内容
 const contentChange = (e) => {
-  console.log("用户正在输入..");
+  // console.log("用户正在输入..");
   store.contentChange(e.target.value);
 };
 
@@ -28,14 +29,13 @@ const syncScroll = (e) => {
 // 文件拖动
 const dragging = (e) => {
   const fileData = e.dataTransfer.files;
-  console.log(e.dataTransfer.files);
+  // console.log(e.dataTransfer.files);
   if (fileData.length > 1) {
     ElMessage({
       message: "请一次拖入1个文件",
       type: "warning",
     });
   } else if (fileData[0].name.slice(-3) !== ".md") {
-    console.log(1);
     ElMessage({
       message: "文件类型不匹配, 应为(*.md)",
       type: "warning",

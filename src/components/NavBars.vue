@@ -43,14 +43,14 @@ const setContent = (content, endPosition, start, end) => {
   store.contentChange(newContent);
 };
 
-//插入内容，并包裹页面内容
+//插入内容，并包裹页面内容，如 `int a`
 const updateContent = (startPosition, endPosition, content, left, right) => {
   const oldContent = store.inputer.value;
   const leftPart = content.slice(0, left);
   const middlePart = oldContent.slice(startPosition, endPosition);
   const rightPart = content.slice(-right);
-  console.log(leftPart, ",", middlePart, ",", rightPart);
-  console.log(content);
+  // console.log(leftPart, ",", middlePart, ",", rightPart);
+  // console.log(content);
   const newContent =
     oldContent.slice(0, startPosition) +
     leftPart +
@@ -60,13 +60,13 @@ const updateContent = (startPosition, endPosition, content, left, right) => {
   store.inputer.focus();
   setTimeout(function () {
     store.inputer.setSelectionRange(startPosition + left, endPosition + left);
-  }, 10);
+  }, 10); //focus需要一小小小会?
   store.contentChange(newContent);
 };
 
 // 工具栏功能函数
 const insert = (content) => {
-  console.log(content);
+  // console.log(content);
   const startPosition = store.inputer.selectionStart;
   const endPosition = store.inputer.selectionEnd;
   if (startPosition === endPosition) {
@@ -206,6 +206,9 @@ const insert = (content) => {
   width: 100%;
   background-color: #009688;
   box-shadow: 4px 3px 3px #aaa;
+
+  position: relative; //避免被菜单栏的阴影遮挡
+  z-index: 20;
 
   ul {
     list-style: none;

@@ -20,7 +20,7 @@ const store = useStore();
 .main {
   width: 100%;
   height: 100%;
-  flex: 0 0 auto;
+  flex: 1 0 auto; // 点睛之笔, flex-shrink为0配合width100%，使其宽度与父组件一样
   &.show-menu {
     .section {
       padding-right: 23rem;

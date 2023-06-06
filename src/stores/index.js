@@ -4,12 +4,7 @@ import { marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 
-// marked.setOptions({
-//   highlight(code) {
-//     return hljs.highlightAuto(code).value;
-//   },
-// });
-
+// 用于md到html的转换，同时配置好代码高亮样式
 marked.use(
   {
     mangle: false,
@@ -26,6 +21,7 @@ marked.use(
   })
 );
 
+// 唯一的store，用于记录文件的内容信息、当前所在文件等
 export const useStore = defineStore(
   "store",
   () => {
@@ -36,9 +32,8 @@ export const useStore = defineStore(
       return s.getTime();
     };
 
-    //acticle
+    //当前文章id与文章列表
     const currentId = ref(createId());
-
     const articleList = ref([
       {
         id: currentId.value,
@@ -95,7 +90,7 @@ export const useStore = defineStore(
       return marked.parse(rawContent.value);
     });
 
-    //同步滚动
+    //模板引用，用在其他地方，方便同步滚动
     const previewer = ref(null);
     const inputer = ref(null);
 
@@ -114,6 +109,7 @@ export const useStore = defineStore(
     };
   },
   {
+    // localstorage：使用piniaPluginPersistedstate插件
     persist: {
       paths: ["articleList", "currentId"],
     },

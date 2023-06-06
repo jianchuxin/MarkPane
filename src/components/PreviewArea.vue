@@ -16,7 +16,8 @@ const previewContent = computed(() => {
 </template>
 
 <style lang="less">
-@import url("@/assets/themes/vue/vue.less");
+//v-html无法正常使用scoped，所以全局引入，但是我在vue.less文件中加了个父选择器避免干扰其他的文件
+@import url("@/assets/themes/vue/vue.less"); // md的主题，从typora编辑器vue主题中抠出来的
 .preview {
   width: 100%;
   height: 100%;

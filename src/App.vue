@@ -36,6 +36,8 @@ body {
   height: 100%;
 }
 
+// 引入的elementPlus中的ElMessage组件，
+// 因为body的字体设置为了62.5%，这里修正一下，改为正常大小
 .el-message {
   font-size: 1.6rem;
 }
@@ -43,7 +45,7 @@ body {
 .app {
   position: relative;
   display: flex;
-  left: -22rem;
+  left: -22rem; // 用于菜单栏折叠
   width: 100%;
   height: 100%;
   transition: all ease 0.5s;

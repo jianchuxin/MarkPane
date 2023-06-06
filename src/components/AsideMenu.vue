@@ -4,23 +4,21 @@ import { computed, ref } from "vue";
 const store = useStore();
 
 const selectArticle = (id) => {
-  console.log("选择文章id:", id);
+  // console.log("选择文章id:", id);
   store.selectArticle(id);
 };
 
 const deleteArticle = (id) => {
-  console.log("删除文章id:", id);
+  // console.log("删除文章id:", id);
   store.deleteArticle(id);
 };
 
 const addNewArticle = () => {
-  console.log("添加一篇新文章");
-  console.log("currentId", store.currentId);
+  // console.log("添加一篇新文章");
   store.addNewArticle();
 };
 
 // 文件下载 .html and .md
-
 const htmlDataUrl = ref("");
 const mdDataUrl = ref("");
 const titleHtml = computed(() => {
@@ -29,6 +27,7 @@ const titleHtml = computed(() => {
 const titleMd = computed(() => {
   return store.rawContent.split("\n")[0] + ".md";
 });
+
 const createUrl = (mode) => {
   if (mode === "md") {
     //下载.md文件
@@ -50,12 +49,11 @@ const createUrl = (mode) => {
   <div class="aside-menu">
     <!-- logo -->
     <div class="logo">
-      <img src="@/assets/images/logo11.png" alt="logo" />
+      <img src="@/assets/images/logo.png" alt="logo" />
     </div>
 
     <!-- file list -->
     <ul class="files">
-      <!-- 文章的标题为内容的第一行 -->
       <li
         v-for="article in store.articleList"
         :key="article.id"
@@ -99,7 +97,7 @@ const createUrl = (mode) => {
       </li>
     </ul>
 
-    <div class="copy-right">Copyright &copy; Chuxin Jian</div>
+    <div class="copy-right">Copyright &copy; 2023 Chuxin Jian</div>
   </div>
 </template>
 
@@ -107,7 +105,7 @@ const createUrl = (mode) => {
 .aside-menu {
   position: relative;
   height: 100%;
-  min-width: 22rem; // 点睛之笔
+  min-width: 22rem; // 点睛之笔，是侧边栏固定大小
   background-color: #f5f5f5;
   box-shadow: 4px 1px 6px 0px rgba(0, 0, 0, 0.2);
 
@@ -127,6 +125,7 @@ const createUrl = (mode) => {
       position: relative;
       cursor: default;
       color: #9e9e9e;
+      transition: all ease 0.3s;
       span {
         display: block;
         height: 100%;
